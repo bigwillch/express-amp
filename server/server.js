@@ -12,24 +12,25 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const endpoint = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
+// const endpoint = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
+const endpoint = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries`;
 
 app.get('/', (req, res) => {
 
   axios.get(endpoint, {
-    // params: {
-    //   ID: 12345
-    // }
+    params: {
+      content_type: 'blogPost'
+    },
     headers: { 
       Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`
     },
     timeout: 1000,
   })
     .then(function ({data}) {
-      console.log(data);
       res.render('index',
         {
-          title: data.name
+          title: 'Test Amp Blog',
+          items: data.items
         }
       );
     })

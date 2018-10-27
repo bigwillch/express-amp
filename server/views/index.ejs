@@ -22,11 +22,21 @@
     <amp-live-list layout="container"
       data-poll-interval="15000"
       data-max-items-per-page="5"
-      id="amp-live-list-insert-blog">
+      id="amp-live-list-latest-articles">
       <button update
         on="tap:amp-live-list-insert-blog.update"
         class="ampstart-btn ml1 caps">You have updates</button>
-      <div items>
+
+        <ul items>
+          <% items.forEach((item, i) => { %>
+              <li
+                id="amp-live-list-insert-blog-<%= i %>"
+                data-sort-time="<%= i+1 %>"
+              >
+                <%- include('article/teaser', {fields: item.fields}); %>
+              </li>
+          <% }); %>
+        </ul>
       
     </div>
   </amp-live-list>
