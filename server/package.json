@@ -12,11 +12,17 @@
     "compression": "^1.7.3",
     "express": "^4.16.4",
     "express-react-views": "^0.10.5",
+    "module-alias": "^2.1.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "showdown": "^1.8.7"
   },
   "scripts": {
     "start": "nodemon -e .jsx,.js server.js --exec babel-node"
+  },
+  "_moduleAliases": {
+    "Atoms/Molecules": "views/atomic/molecules",
+    "Atoms/Templates": "views/atomic/templates",
+    "Hocs": "views/wrappers/hocs"
   }
 }

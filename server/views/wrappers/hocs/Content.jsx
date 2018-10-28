@@ -1,8 +1,7 @@
 var React = require('react');
-import Html from './Html';
+import Html from 'Hocs/Html';
 
 const Content = (props) => {
-  console.log(props)
   return (
     <React.Fragment>
       <header>

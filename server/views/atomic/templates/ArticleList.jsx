@@ -1,6 +1,6 @@
 const React = require('react');
-import Content from '../Content';
-import Card from '../molecules/Card';
+import Content from 'Hocs/Content';
+import Card from 'Atoms/Molecules/Card';
 
 const ArticleList = (props) => {
 
