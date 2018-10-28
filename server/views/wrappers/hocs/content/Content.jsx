@@ -1,5 +1,5 @@
 var React = require('react');
-import Html from 'Hocs/Html';
+import { Html } from 'Hocs';
 
 const Content = (props) => {
   return (

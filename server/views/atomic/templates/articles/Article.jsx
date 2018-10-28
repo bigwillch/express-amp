@@ -1,5 +1,5 @@
 const React = require('react');
-import Content from 'Hocs/Content';
+import { Content } from 'Hocs';
 
 const Article = (props) => {
 

@@ -16,7 +16,7 @@ exports.article_list = (req, res) => {
     timeout: 1000,
   })
     .then(function ({ data }) {
-      res.render('atomic/templates/ArticleList',
+      res.render('atomic/templates/articles/ArticleList',
         {
           pageTitle: req.siteInfo.name,
           title: req.siteInfo.name,
@@ -45,7 +45,7 @@ exports.article_full = (req, res) => {
       let fields = data.items[0].fields;
       fields.body = converter.makeHtml(fields.body);
 
-      res.render('atomic/templates/Article',
+      res.render('atomic/templates/articles/Article',
         {
           title: fields.title,
           fields: fields
