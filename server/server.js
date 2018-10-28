@@ -8,7 +8,8 @@ const routes = require('./routes');
 
 const app = express();
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
 
 // Middlewares
 app.use(compression());

@@ -10,11 +10,13 @@
     "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
-    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-react-views": "^0.10.5",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "showdown": "^1.8.7"
   },
   "scripts": {
-    "start": "nodemon -e .ejs,.js server.js --exec babel-node"
+    "start": "nodemon -e .jsx,.js server.js --exec babel-node"
   }
 }

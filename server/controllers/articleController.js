@@ -16,8 +16,9 @@ exports.article_list = (req, res) => {
     timeout: 1000,
   })
     .then(function ({ data }) {
-      res.render('index',
+      res.render('templates/ArticleList',
         {
+          pageTitle: req.siteInfo.name,
           title: req.siteInfo.name,
           items: data.items
         }
@@ -44,7 +45,7 @@ exports.article_full = (req, res) => {
       let fields = data.items[0].fields;
       fields.body = converter.makeHtml(fields.body);
 
-      res.render('index',
+      res.render('templates/Article',
         {
           title: fields.title,
           fields: fields
