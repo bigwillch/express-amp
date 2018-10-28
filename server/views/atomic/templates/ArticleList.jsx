@@ -28,7 +28,7 @@ const ArticleList = (props) => {
         <button 
           update="true"
           on="tap:amp-live-list-latest-articles.update"
-          class="ampstart-btn ml1 caps">You have updates</button>
+          className="ampstart-btn ml1 caps">You have updates</button>
         <ul items="true">
           { items }
         </ul>
