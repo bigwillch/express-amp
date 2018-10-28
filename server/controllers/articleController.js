@@ -1,14 +1,57 @@
 // var Author = require('../models/article');
+import axios from 'axios';
+import showdown from 'showdown';
+
+const converter = new showdown.Converter();
 
 exports.article_list = (req, res) => {
-  res.render('index',
-    {
-      title: req.siteInfo.name,
-      items: req.data.items
-    }
-  );
+
+  axios.get(`https://cdn.contentful.com/spaces/${req.api.id}/environments/master/entries`, {
+    params: {
+      content_type: 'blogPost'
+    },
+    headers: {
+      Authorization: `Bearer ${req.api.token}`
+    },
+    timeout: 1000,
+  })
+    .then(function ({ data }) {
+      res.render('index',
+        {
+          title: req.siteInfo.name,
+          items: data.items
+        }
+      );
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 exports.article_full = (req, res) => {
-  res.send('NOT IMPLEMENTED: Article full');
+
+  axios.get(`https://cdn.contentful.com/spaces/${req.api.id}/entries?fields.slug=${req.params.alias}`, {
+    params: {
+      content_type: 'blogPost'
+    },
+    headers: {
+      Authorization: `Bearer ${req.api.token}`
+    },
+    timeout: 1000,
+  })
+    .then(function ({ data }) {
+
+      let fields = data.items[0].fields;
+      fields.body = converter.makeHtml(fields.body);
+
+      res.render('index',
+        {
+          title: fields.title,
+          fields: fields
+        }
+      );
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };

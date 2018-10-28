@@ -24,20 +24,31 @@
       data-max-items-per-page="5"
       id="amp-live-list-latest-articles">
       <button update
-        on="tap:amp-live-list-insert-blog.update"
+        on="tap:amp-live-list-latest-articles.update"
         class="ampstart-btn ml1 caps">You have updates</button>
 
-        <ul items>
-          <% items.forEach((item, i) => { %>
-              <li
-                id="amp-live-list-insert-blog-<%= i %>"
-                data-sort-time="<%= i+1 %>"
-              >
-                <%- include('article/teaser', {fields: item.fields}); %>
-              </li>
-          <% }); %>
-        </ul>
-      
+        <%if (typeof fields !== 'undefined') { %>
+          <div items>
+            <div
+              id="amp-live-list-latest-articles-full"
+              data-sort-time="1"
+            >
+              <%- include('article/full', {fields: fields}); %>
+            </div>
+          </div>
+        <% } else { %>
+          <ul items>
+            <% items.forEach((item, i) => { %>
+                <li
+                  id="amp-live-list-latest-articles-<%= i %>"
+                  data-sort-time="<%= i+1 %>"
+                >
+                  <%- include('article/teaser', {fields: item.fields}); %>
+                </li>
+            <% }); %>
+          </ul>
+        <% } %>  
+
     </div>
   </amp-live-list>
 

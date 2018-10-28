@@ -1,7 +1,9 @@
 const routes = require('express').Router();
 
-const article_controller = require('../controllers/articleController');
+routes.get('/', function (req, res) {
+  res.redirect('/articles');
+});
 
-routes.get('/', article_controller.article_list);
+routes.use('/articles', require('./articles'));
 
 module.exports = routes;

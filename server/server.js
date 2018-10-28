@@ -1,10 +1,9 @@
 const express = require('express');
-const axios = require('axios');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 
 import siteInfo from './middlewares/siteInfo';
-import endpointFetch from './middlewares/api';
+import api from './middlewares/api';
 const routes = require('./routes');
 
 const app = express();
@@ -19,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', siteInfo);
 
-app.use('/', endpointFetch);
+app.use('/', api);
 
 app.use('/', routes);
 
