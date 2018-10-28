@@ -3,42 +3,25 @@ const axios = require('axios');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 
+import siteInfo from './middlewares/siteInfo';
+import endpointFetch from './middlewares/api';
+const routes = require('./routes');
+
 const app = express();
 
 app.set('view engine', 'ejs');
 
+// Middlewares
 app.use(compression());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const endpoint = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
-const endpoint = `https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries`;
+app.use('/', siteInfo);
 
-app.get('/', (req, res) => {
+app.use('/', endpointFetch);
 
-  axios.get(endpoint, {
-    params: {
-      content_type: 'blogPost'
-    },
-    headers: { 
-      Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_TOKEN}`
-    },
-    timeout: 1000,
-  })
-    .then(function ({data}) {
-      res.render('index',
-        {
-          title: 'Test Amp Blog',
-          items: data.items
-        }
-      );
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-});
+app.use('/', routes);
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
