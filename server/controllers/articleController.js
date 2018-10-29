@@ -1,8 +1,5 @@
 // var Author = require('../models/article');
 import axios from 'axios';
-import showdown from 'showdown';
-
-const converter = new showdown.Converter();
 
 exports.article_list = (req, res) => {
 
@@ -43,7 +40,6 @@ exports.article_full = (req, res) => {
     .then(function ({ data }) {
 
       let fields = data.items[0].fields;
-      fields.body = converter.makeHtml(fields.body);
 
       res.render('atomic/templates/articles/Article',
         {
