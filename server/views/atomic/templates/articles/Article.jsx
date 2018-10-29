@@ -1,11 +1,16 @@
 const React = require('react');
 import { Content } from 'Hocs';
 
-const Article = (props) => {
+const Article = ({fields, image}) => {
 
   return (
     <article>
-      {props.fields.body}
+      <amp-img src={`${image.src}?w=600`}
+        width={image.width}
+        height={image.height}
+        layout="responsive"
+        alt="AMP"></amp-img>
+      {fields.body}
     </article>
   );
 }

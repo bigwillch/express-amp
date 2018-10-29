@@ -48,6 +48,11 @@ exports.article_full = (req, res) => {
       res.render('atomic/templates/articles/Article',
         {
           title: fields.title,
+          image: {
+            src: data.includes.Asset[0].fields.file.url,
+            width: data.includes.Asset[0].fields.file.details.image.width,
+            height: data.includes.Asset[0].fields.file.details.image.height,
+          },
           fields: fields
         }
       );
