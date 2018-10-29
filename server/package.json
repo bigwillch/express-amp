@@ -23,6 +23,7 @@
   "_moduleAliases": {
     "Atoms/Molecules": "views/atomic/molecules",
     "Atoms/Templates": "views/atomic/templates",
-    "Hocs": "views/wrappers/hocs"
+    "Hocs": "views/wrappers/hocs",
+    "Config": "config"
   }
 }
