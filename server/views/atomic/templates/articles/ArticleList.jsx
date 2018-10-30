@@ -1,5 +1,5 @@
 const React = require('react');
-import { Content } from 'Hocs';
+import { AmpRender } from 'Hocs';
 import { Card } from 'Atoms/Molecules';
 
 const ArticleList = (props) => {
@@ -34,10 +34,13 @@ const ArticleList = (props) => {
         </ul>
       </amp-live-list>
 
-      <script async custom-element="amp-live-list" src="https://cdn.ampproject.org/v0/amp-live-list-0.1.js"></script>
-
     </React.Fragment>
   );
 }
 
-export default Content(ArticleList);
+export default AmpRender(
+  ArticleList,
+  {
+    'amp-live-list': true
+  }
+);

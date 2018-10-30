@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactMarkdown = require('react-markdown')
 
-import { Content } from 'Hocs';
+import { AmpRender } from 'Hocs';
 
 const Article = ({fields, image}) => {
   return (
@@ -16,4 +16,4 @@ const Article = ({fields, image}) => {
   );
 }
 
-export default Content(Article);
+export default AmpRender(Article);
